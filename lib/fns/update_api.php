@@ -27,22 +27,30 @@ function fetch_remote_data() {
 
   $remoteData = json_decode( wp_remote_retrieve_body( $remoteData ) );
 
+  $readme_path = CMCPLAYER_PATH . 'readme.txt';
+  $default_headers = [
+    'Plugin Name' => 'CMC Video Player',
+  ];
+  $readme_data = get_file_data( $readme_path, $default_headers );
+
   //*
   return (object) [
-      'name'          => 'Sellers.json Editor',
+      'name'          => $readme_data['Plugin Name'],
       'slug'          => CMCPLAYER_PLUGIN_SLUG,
       'plugin'        => CMCPLAYER_PLUGIN_FILE,
       'new_version'   => $remoteData->version,  // <-- Important!
       'url'           => 'https://wenmarkdigital.com',
       'package'       => $remoteData->package,  // <-- Important!
-      'icons'         => [],
-      'banners'       => [],
-      'banners_rtl'   => [],
       'tested'        => '',
       'requires_php'  => '',
       'compatibility' => new \stdClass(),
       'banners'       => [
-        'low' => 'There is a new version of the Sellers.json Editor.',
+        'low'   => 'https://cmc-video-player.wenmarkdigital.com/assets/banner-772x250.jpg',
+        'high'  => 'https://cmc-video-player.wenmarkdigital.com/assets/banner-1544x500.jpg',
+      ],
+      'icons'         => [
+        'low'   => 'https://cmc-video-player.wenmarkdigital.com/assets/icon-256x256.jpg',
+        'high'  => 'https://cmc-video-player.wenmarkdigital.com/assets/icon-256x256.jpg',
       ],
   ];
   /**/
@@ -88,7 +96,7 @@ function filter_plugin_info( $res, $action, $args ){
   //$res->last_updated = $remoteData->last_updated;
 
   $res->sections = array(
-    'description' => 'Provides an interface for editing your site\'s sellers.json.',
+    'description' => 'Adds the CMC Video Player to your site.',
     'installation' => null,
     'changelog' => '<strong>0.0.0</strong><ul><li>Changlog coming soon.</li></ul>'
   );
