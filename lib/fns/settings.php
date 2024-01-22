@@ -73,7 +73,23 @@ add_action('admin_init', __NAMESPACE__ . '\\settings_init');
 
 function cmc_video_player_section_developers_cb($args) {
     ?>
-    <p id="<?= esc_attr($args['id']); ?>"><?= __('<p>Add the player script for this site in the field below and click Save Settings. Once saved, you may insert the player on the site using the following shortcode:</p> <p><code>[cmcplayer/]</code> - displays the CMC Player saved in the "CMC Player Script" field below. Available attributes:</p><ul style="list-style-type: disc; margin-left: 2em;"><li><code>show_on_desktop</code> (bool) - Show on desktop? Default: <code>true</code></li><li><code>show_on_mobile</code> (bool) - Show on mobile? Default: <code>true</code></li></ul><p>Example: <code>[cmcplayer show_on_desktop="true" show_on_mobile="false"/]</code></p>', 'cmc_video_player'); ?></p>
+    <div id="<?= esc_attr($args['id']); ?>">
+      <p>Add the player script for this site in the field below and click Save Settings. Once saved, you may insert the player on the site using the following shortcode:</p>
+      <p><code>[cmcplayer/]</code> - displays the CMC Player saved in the "CMC Player Script" field below. Available attributes:</p>
+      <ul style="list-style-type: disc; margin-left: 2em;">
+        <li><code>show_on_desktop</code> (bool) - Show on desktop? Default TRUE.</li>
+        <li><code>show_on_mobile</code> (bool) - Show on mobile? Default TRUE.</li>
+        <li><code>excludes</code> (string) - Comma separated list of Post IDs and/or keywords for not showing the player. Available keywords: front_page, archive.</li>
+        <li><code>player_id</code> (mixed) - Include the player ID to specify a player other than the stored player in the settings. Default FALSE.</li>
+        <li><code>qortex</code> (bool) - Include the Qortex ad banner tag? Default FALSE.</li>
+      </ul>
+      <p>Examples: </p>
+      <pre>
+      [cmcplayer show_on_desktop="true" show_on_mobile="false"/]
+
+      [cmcplayer player_id="65a1aa396c9d9999999999999999" qortex="true" show_on_desktop="true" show_on_mobile="false"/]
+      </pre>
+    </div>
     <?php
 }
 
