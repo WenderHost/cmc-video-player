@@ -3,7 +3,7 @@ Contributors: TheWebist
 Requires at least: 4.5
 Tested up to: 6.4.2
 Requires PHP: 8.0
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,9 @@ This plugin provides an admin screen, found under "Settings > CMC Player", for a
 Example: `[cmcplayer show_on_desktop="true" show_on_mobile="false"/]`
 
 == Changelog ==
+
+= 1.2.2 =
+* BUGFIX: Returning `$player` when `player_id` attribute is set.
 
 = 1.2.1 =
 * Updating documentation on Settings page.

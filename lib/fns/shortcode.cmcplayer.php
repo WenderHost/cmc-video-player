@@ -67,6 +67,7 @@ function cmc_video_player( $atts ){
     if( $args['qortex'] )
       $player.= "<script src=\"https://tags.qortex.ai/bootstrapper?group-id=oZY4NHogUywbXAxaxq6w&video-container=AV{$args['player_id']}\" defer></script>\n";
     $player.= "<script async id=\"AV{$args['player_id']}\" type=\"text/javascript\" src=\"https://tg1.aniview.com/api/adserver/spt?AV_TAGID={$args['player_id']}&AV_PUBLISHERID=624e25402d2a7c268c34f1d8\"></script>\n<!-- END CMC Player -->\n";
+    return $player;
   } else if( $show_player ) {
     $player = get_option( 'cmc_player_script' );
     return $player;

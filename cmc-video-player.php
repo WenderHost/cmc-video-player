@@ -7,7 +7,7 @@
  * Author URI:      https://mwender.com
  * Text Domain:     cmc-video-player
  * Domain Path:     /languages
- * Version:         1.2.1
+ * Version:         1.2.2
  *
  * @package         Cmc_Video_Player
  */
