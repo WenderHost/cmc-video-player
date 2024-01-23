@@ -3,7 +3,7 @@
 **Requires at least:** 4.5  
 **Tested up to:** 6.4.2  
 **Requires PHP:** 8.0  
-**Stable tag:** 1.2.2  
+**Stable tag:** 1.3.0  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -20,10 +20,14 @@ This plugin provides an admin screen, found under "Settings > CMC Player", for a
 - `excludes` (string) - Comma separated list of Post IDs and/or keywords for not showing the player. Available keywords: front_page, archive.
 - `player_id` (mixed) - Include the player ID to specify a player other than the stored player in the settings. Default FALSE.
 - `qortex` (bool) - Include the Qortex ad banner tag? Default FALSE.
+- `meta`  (bool) - Show meta information below the player? Default FALSE.
 
 Example: `[cmcplayer show_on_desktop="true" show_on_mobile="false"/]`
 
 ## Changelog ##
+
+### 1.3.0 ###
+* Adding `meta` attribute to allow display of meta information below the player. Only displays for logged in users with capability of `activate_plugins`.
 
 ### 1.2.2 ###
 * BUGFIX: Returning `$player` when `player_id` attribute is set.

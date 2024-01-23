@@ -11,6 +11,7 @@ namespace CMCPLayer\shortcode;
  *   @type  str    $excludes         Comma separated list of Post IDs and/or keywords for not showing the player. Available keywords: front_page, archive.
  *   @type  mixed  $player_id        Include the player ID to specify a player other than the stored player in the settings. Default FALSE.
  *   @type  bool   $qortex           Include the Qortex ad banner tag? Default FALSE.
+ *   @type  bool   $meta             Show meta information below the player? Default FALSE.
  * }
  *
  * @return     string  CMC Player script
@@ -24,6 +25,7 @@ function cmc_video_player( $atts ){
     'excludes'        => null,
     'player_id'       => false,
     'qortex'          => false,
+    'meta'            => false,
   ], $atts );
 
   $show_player = true;
@@ -39,6 +41,9 @@ function cmc_video_player( $atts ){
 
   if ( $args['qortex'] === 'false' ) $args['qortex'] = false;
   $args['qortex'] = (bool) $args['qortex'];
+
+  if ( $args['meta'] === 'false' ) $args['meta'] = false;
+  $args['meta'] = (bool) $args['meta'];
 
   $excludes = false;
   if( ! is_null( $args['excludes'] ) )
@@ -66,7 +71,12 @@ function cmc_video_player( $atts ){
     $player = "\n<!-- START CMC Player -->\n";
     if( $args['qortex'] )
       $player.= "<script src=\"https://tags.qortex.ai/bootstrapper?group-id=oZY4NHogUywbXAxaxq6w&video-container=AV{$args['player_id']}\" defer></script>\n";
+
     $player.= "<script async id=\"AV{$args['player_id']}\" type=\"text/javascript\" src=\"https://tg1.aniview.com/api/adserver/spt?AV_TAGID={$args['player_id']}&AV_PUBLISHERID=624e25402d2a7c268c34f1d8\"></script>\n<!-- END CMC Player -->\n";
+
+    if( $args['meta'] && current_user_can( 'activate_plugins' ) )
+      $player.= "<div class=\"player-meta\" style=\"color: #999; font-size: 12px; font-family: Helvetica, Arial, sans-serif; margin-top: 0;\">Player ID: {$args['player_id']}</div>";
+
     return $player;
   } else if( $show_player ) {
     $player = get_option( 'cmc_player_script' );
